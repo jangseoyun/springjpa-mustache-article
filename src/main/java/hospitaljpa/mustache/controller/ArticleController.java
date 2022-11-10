@@ -2,8 +2,12 @@ package hospitaljpa.mustache.controller;
 
 
 import hospitaljpa.mustache.domain.dto.ArticleDto;
+import hospitaljpa.mustache.domain.dto.CommentDto;
+import hospitaljpa.mustache.domain.dto.CommentFactory;
 import hospitaljpa.mustache.domain.entity.Article;
+import hospitaljpa.mustache.domain.entity.ArticleComment;
 import hospitaljpa.mustache.domain.repository.ArticleRepository;
+import hospitaljpa.mustache.domain.repository.CommentJpaRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -13,7 +17,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Slf4j
@@ -22,6 +28,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class ArticleController {
     private final ArticleRepository articleRepository;
+    private final CommentJpaRepository commentJpaRepository;
 
     //---------main---------------
     @GetMapping("")
@@ -50,7 +57,10 @@ public class ArticleController {
     public String getContentsOne(@PathVariable("id") Long id, Model model) {
         log.info("id:{}", id);
         Optional<Article> optArticle = articleRepository.findById(id);
-        log.info("{}", optArticle);
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("article", optArticle.get());
+
         if (optArticle.isEmpty()) {
             return "error";
         }
@@ -96,5 +106,15 @@ public class ArticleController {
         Article article = articleDto.toEntityAll();
         articleRepository.save(article);
         return "redirect:/articles/list";
+    }
+
+    //---------comment  등록--------------------
+    @GetMapping("/{no}/comment")
+    public String comment(@PathVariable("no") Long no, CommentDto commentDto) {
+        log.info("no:{}, comment:{}", no, commentDto);
+        Article article = articleRepository.findById(no).get();
+        ArticleComment articleComment = CommentFactory.toCommentEntity(article, commentDto);
+        commentJpaRepository.save(articleComment);
+        return "redirect:/articles/show";
     }
 }
