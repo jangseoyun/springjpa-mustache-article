@@ -52,20 +52,22 @@ public class ArticleController {
         return String.format("redirect:/articles/%d", saveOne.getId());
     }
 
-    //---------select One---------------
+    //---------show-select One---------------
     @GetMapping("/{id}")
     public String getContentsOne(@PathVariable("id") Long id, Model model) {
         log.info("id:{}", id);
-        Optional<Article> optArticle = articleRepository.findById(id);
-
         Map<String, Object> map = new HashMap<>();
-        map.put("article", optArticle.get());
+
+        Optional<Article> optArticle = articleRepository.findById(id);
+        List<ArticleComment> commentList = commentJpaRepository.getCommentId(id);
+        map.put("article", optArticle);
+        map.put("commentList", commentList);
 
         if (optArticle.isEmpty()) {
             return "error";
         }
 
-        model.addAttribute("article", optArticle.get());
+        model.addAttribute("map",map);
         return "show";
     }
 
