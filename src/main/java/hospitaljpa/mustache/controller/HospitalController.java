@@ -1,12 +1,11 @@
 package hospitaljpa.mustache.controller;
 
 import hospitaljpa.mustache.domain.entity.Hospital;
-import hospitaljpa.mustache.domain.repository.HospitalJpaRepository;
 import hospitaljpa.mustache.service.HospitalService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
@@ -27,8 +26,10 @@ public class HospitalController {
     public String list(Model model
             , @PageableDefault(size = 10, sort = "id", direction = Sort.Direction.ASC) Pageable pageable) {
         log.info("hospital list");
-        Page<Hospital> hospitalList = hospitalService.getHospitalList(pageable);
-        model.addAttribute("listpaging", hospitalList);
+        Slice<Hospital> hospitalList = hospitalService.getHospitalList(pageable);
+        model.addAttribute("listPaging", hospitalList);
+        model.addAttribute("previous", pageable.previousOrFirst().getPageNumber());
+        model.addAttribute("next", pageable.next().getPageNumber());
         return "hospital/hospital-list";
     }
 
