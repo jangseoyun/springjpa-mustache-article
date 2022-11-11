@@ -1,34 +1,48 @@
 {{>layouts/header}}
 <div id="wrap">
+
     {{#article}}
-    <div class="card text-bg-warning mb-3" style="width: 70rem;">
-        <div class="card-body" style="text-align: center">
-            <h5 class="card-title">{{title}}</h5>
-            <h6 class="card-subtitle mb-2 text-muted">{{id}}번 게시물이 등록되었습니다 :-) </h6>
-            <p class="card-text">{{contents}}</p>
-            <a href="/articles/new" class="card-link">new article</a>
-            <a href="/articles/list" class="card-link">list article</a>
+        <div class="card text-bg-warning mb-3" style="width: 70rem;">
+            <div class="card-body" style="text-align: center">
+                <h5 class="card-title">{{title}}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{id}}번 게시물이 등록되었습니다 :-) </h6>
+                <p class="card-text">{{contents}}</p>
+                <a href="/articles/new" class="card-link">new article</a>
+                <a href="/articles/list" class="card-link">list article</a>
+            </div>
         </div>
-    </div>
     {{/article}}
 
     <!--댓글 작성-->
     <div class="input-group mb-3">
-        <form>
-        <input type="text" class="form-control" placeholder="Please write a comment" aria-label="Recipient's username" aria-describedby="button-addon2" name="comment" value="">
+        <input type="text" class="form-control" placeholder="댓글을 작성해 주세요" aria-label="Recipient's username" aria-describedby="button-addon2" style="text-align: center">
         <button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="location.href='/articles/{{id}}/comment'">등록</button>
-        </form>
     </div>
 
-    {{#commentList}}
+
     <!--댓글 리스트-->
-    <ul class="list-group list-group-flush">
-        <li class="list-group-item">An item</li>
-        <li class="list-group-item">A second item</li>
-        <li class="list-group-item">A third item</li>
-        <li class="list-group-item">A fourth item</li>
-        <li class="list-group-item">And a fifth one</li>
-    </ul>
+    <table class="table" style="margin-top: 50px">
+        <thead>
+            <tr>
+                <th scope="col">No</th>
+                <th scope="col">Comment</th>
+            </tr>
+        </thead>
+
+        <tbody>
+        {{#commentList}}
+            <tr>
+                <th scope="row">{{id}}</th>
+            </tr>
+        {{/commentList}}
+        </tbody>
+    </table>
+
+    {{^commentList}}
+        <div>
+            작성된 댓글이 없습니다 :-]
+        </div>
     {{/commentList}}
+
 </div>
 {{>layouts/footer}}

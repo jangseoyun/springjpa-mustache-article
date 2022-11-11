@@ -8,6 +8,6 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface CommentJpaRepository extends JpaRepository<ArticleComment, Long> {
-    @Query("select ac from ArticleComment ac where ac.id = :id")
+    @Query("select ac from ArticleComment ac where ac.article.id = :id")
     List<ArticleComment> getCommentId(@Param("id") Long id);
 }

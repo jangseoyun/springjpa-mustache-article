@@ -17,9 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 @Slf4j
@@ -56,18 +54,17 @@ public class ArticleController {
     @GetMapping("/{id}")
     public String getContentsOne(@PathVariable("id") Long id, Model model) {
         log.info("id:{}", id);
-        Map<String, Object> map = new HashMap<>();
 
         Optional<Article> optArticle = articleRepository.findById(id);
         List<ArticleComment> commentList = commentJpaRepository.getCommentId(id);
-        map.put("article", optArticle);
-        map.put("commentList", commentList);
+        log.info("comment list: {}", commentList);//todo : comment
 
         if (optArticle.isEmpty()) {
             return "error";
         }
 
-        model.addAttribute("map",map);
+        model.addAttribute("article", optArticle.get());
+        model.addAttribute("commentList", commentList);
         return "show";
     }
 
@@ -115,8 +112,8 @@ public class ArticleController {
     public String comment(@PathVariable("no") Long no, CommentDto commentDto) {
         log.info("no:{}, comment:{}", no, commentDto);
         Article article = articleRepository.findById(no).get();
-        ArticleComment articleComment = CommentFactory.toCommentEntity(article, commentDto);
+        ArticleComment articleComment = CommentFactory.toCommentEntity(article, commentDto.getComment());
         commentJpaRepository.save(articleComment);
-        return "redirect:/articles/show";
+        return "redirect:/articles/{id}}";
     }
 }

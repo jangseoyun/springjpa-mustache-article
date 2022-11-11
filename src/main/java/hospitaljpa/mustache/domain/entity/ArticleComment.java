@@ -11,17 +11,19 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-@Table(name = "article_comment")
+@Table(name = "t_article_comment")
 public class ArticleComment {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "comment_id")
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "article_id")
     private Article article;
 
+    @Column(name = "comment")
     private String comment;
 
     public ArticleComment(Article article, String comment) {
