@@ -22,7 +22,7 @@ public class HospitalController {
     private final HospitalService hospitalService;
 
     /*------------ 리스트 + 페이징 ----------*/
-    @GetMapping("")
+    @GetMapping(value = "", produces = "text/plain;charset=UTF-8")
     public String list(Model model
             , @PageableDefault(size = 10, sort = "id", direction = Sort.Direction.ASC) Pageable pageable) {
         log.info("hospital list");
