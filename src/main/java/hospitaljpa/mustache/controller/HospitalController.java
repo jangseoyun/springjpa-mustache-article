@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Slf4j
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/hospital")
+@RequestMapping(value = "/hospital", produces = "text/plain;charset=UTF-8")
 public class HospitalController {
 
     private final HospitalService hospitalService;
