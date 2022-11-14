@@ -33,4 +33,22 @@ class HospitalJpaRepositoryTest {
 
     }
 
+    @DisplayName("주소 검색")
+    @Test
+    void contains() {
+        String address = "수원시";
+        List<Hospital> result = hospitalJpaRepository.findByRoadNameAddressContaining(address);
+        for (Hospital hospital : result) {
+            System.out.println(hospital);
+        }
+    }
+
+    @DisplayName("병상수 10개 이상 20개 미만인 병원")
+    @Test
+    void searchBedNumber() {
+        List<Hospital> byTotalNumberOfBedsBetween = hospitalJpaRepository.findByTotalNumberOfBedsBetween(10, 20);
+        for (Hospital hospital : byTotalNumberOfBedsBetween) {
+            System.out.println(hospital);
+        }
+    }
 }
