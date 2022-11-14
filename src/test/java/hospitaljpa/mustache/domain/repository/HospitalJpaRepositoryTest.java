@@ -46,8 +46,17 @@ class HospitalJpaRepositoryTest {
     @DisplayName("병상수 10개 이상 20개 미만인 병원")
     @Test
     void searchBedNumber() {
-        List<Hospital> byTotalNumberOfBedsBetween = hospitalJpaRepository.findByTotalNumberOfBedsBetween(10, 20);
+        List<Hospital> byTotalNumberOfBedsBetween = hospitalJpaRepository.findByTotalNumberOfBedsBetween(10, 19);
         for (Hospital hospital : byTotalNumberOfBedsBetween) {
+            System.out.println(hospital);
+        }
+    }
+
+    @DisplayName("orderBy 테스트")
+    @Test
+    void orderBy() {
+        List<Hospital> result = hospitalJpaRepository.findByPatientRoomCntBetweenOrderByPatientRoomCntDesc(10, 19);
+        for (Hospital hospital : result) {
             System.out.println(hospital);
         }
     }
