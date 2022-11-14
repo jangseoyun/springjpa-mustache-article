@@ -22,7 +22,7 @@ import java.util.Optional;
 
 @Slf4j
 @Controller
-@RequestMapping("/articles")
+@RequestMapping(value = "/articles")
 @RequiredArgsConstructor
 public class ArticleController {
     private final ArticleRepository articleRepository;
