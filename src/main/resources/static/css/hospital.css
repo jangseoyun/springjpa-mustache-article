@@ -1,7 +1,18 @@
 @charset "UTF-8";
 
+/*header*/
 #header-img{
     background-image: url("../img/health.jpg");
     background-position: 200px;
     height: 150px;
+}
+
+/*hospital-list*/
+.width-250{
+    width: 450px;
+    float: right;
+}
+
+.search{
+    margin-bottom: 40px;
 }
