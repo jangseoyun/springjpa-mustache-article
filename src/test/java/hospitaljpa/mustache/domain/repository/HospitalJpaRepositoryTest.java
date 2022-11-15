@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
+/*
 
 @SpringBootTest
 @DisplayName("HospitalJpaRepositoryTest")
@@ -60,4 +61,4 @@ class HospitalJpaRepositoryTest {
             System.out.println(hospital);
         }
     }
-}
+}*/
