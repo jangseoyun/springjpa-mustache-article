@@ -1,5 +1,6 @@
 package hospitaljpa.mustache.domain.entity;
 
+import hospitaljpa.mustache.controller.HospitalResponse;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -64,4 +65,10 @@ public class Hospital {
 
     @Column(name = "total_area_size")
     private float totalAreaSize; //총면적
+
+    public static HospitalResponse of(Hospital hospital) {
+        return new HospitalResponse(
+                  hospital.getId(), hospital.getHospitalName(), hospital.getPatientRoomCnt()
+                , hospital.getTotalNumberOfBeds(), hospital.getBusinessTypeName(), hospital.getTotalAreaSize());
+    }
 }

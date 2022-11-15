@@ -16,13 +16,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Slf4j
 @Controller
 @RequiredArgsConstructor
-@RequestMapping(value = "/hospital", produces = "text/plain;charset=UTF-8")
+@RequestMapping(value = "/hospital")
 public class HospitalController {
 
     private final HospitalService hospitalService;
 
     /*------------ 리스트 + 페이징 ----------*/
-    @GetMapping(value = "", produces = "text/plain;charset=UTF-8")
+    @GetMapping(value = "")
     public String list(Model model
             , @PageableDefault(size = 10, sort = "id", direction = Sort.Direction.ASC) Pageable pageable) {
         log.info("hospital list");
