@@ -1,4 +1,4 @@
-package hospitaljpa.mustache.controller;
+package hospitaljpa.mustache.domain.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
