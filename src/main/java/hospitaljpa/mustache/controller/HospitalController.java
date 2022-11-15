@@ -1,5 +1,6 @@
 package hospitaljpa.mustache.controller;
 
+import hospitaljpa.mustache.domain.dto.HospitalResponse;
 import hospitaljpa.mustache.domain.entity.Hospital;
 import hospitaljpa.mustache.service.HospitalService;
 import lombok.RequiredArgsConstructor;
@@ -12,6 +13,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 @Slf4j
 @Controller
@@ -31,6 +35,19 @@ public class HospitalController {
         model.addAttribute("previous", pageable.previousOrFirst().getPageNumber());
         model.addAttribute("next", pageable.next().getPageNumber());
         return "hospital/hospital-list";
+    }
+
+    /*------------ 키워드 검색 ---------------*/
+    @GetMapping("/search")
+    public String search(@RequestParam("keyword") String keyword
+            , @PageableDefault(size = 10, sort = "id", direction = Sort.Direction.ASC) Pageable pageable
+            , Model model) {
+        log.info("hospital search: {}", keyword);
+        List<HospitalResponse> responseList = hospitalService.searchHospitalName(keyword, pageable);
+        model.addAttribute("listPaging", responseList);
+        model.addAttribute("previous", pageable.previousOrFirst().getPageNumber());
+        model.addAttribute("next", pageable.next().getPageNumber());
+        return "hospital/search-list";
     }
 
     /*------------ 해당 페이지 설명폼 ----------*/
