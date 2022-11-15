@@ -33,5 +33,12 @@ public class HospitalController {
         return "hospital/hospital-list";
     }
 
+    /*------------ 해당 페이지 설명폼 ----------*/
+    @GetMapping("/readme")
+    public String readmeForm() {
+        log.info("hospital 웹 페이지 설명폼");
+        return "hospital/readme";
+    }
+
 
 }
