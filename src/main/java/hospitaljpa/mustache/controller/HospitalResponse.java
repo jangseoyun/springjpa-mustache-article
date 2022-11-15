@@ -15,5 +15,6 @@ public class HospitalResponse {
     private Integer totalNumberOfBeds;
     private String businessTypeName;
     private Float totalAreaSize;
+    private String businessStatusName;
 
 }
