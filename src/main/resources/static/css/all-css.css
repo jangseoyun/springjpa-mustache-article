@@ -15,3 +15,15 @@ td, tr, textarea, button, form {
     width: 1130px;
     margin: 0px auto;
 }
+
+.float-l {
+    float: left;
+}
+
+.float-r {
+    float: right;
+}
+
+.float-t {
+    float: top;
+}
