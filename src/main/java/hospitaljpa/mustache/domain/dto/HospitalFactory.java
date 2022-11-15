@@ -1,6 +1,5 @@
 package hospitaljpa.mustache.domain.dto;
 
-import hospitaljpa.mustache.controller.HospitalResponse;
 import hospitaljpa.mustache.domain.entity.Hospital;
 
 public class HospitalFactory {
