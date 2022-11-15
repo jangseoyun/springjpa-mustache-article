@@ -19,7 +19,7 @@ public class ArticleComment {
     @Column(name = "comment_id")
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)//TODO 고아객체 해결 예정
     @JoinColumn(name = "article_id")
     private Article article;
 
