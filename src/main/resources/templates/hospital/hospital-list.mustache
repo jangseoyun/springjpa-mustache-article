@@ -1,6 +1,13 @@
 
 {{>layouts/header}}
 <div id="wrap">
+    <!--search-->
+    <form class="d-flex width-250 search" role="search" action="/hospital/search" , method="get">
+        <input class="form-control me-2" type="search" placeholder="키워드를 입력해 주세요" aria-label="Search"
+               name="keyword" value="">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+    <!--search-->
 
     <!--list table-->
     <table class="table table-striped">

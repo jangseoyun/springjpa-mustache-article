@@ -1,0 +1,42 @@
+{{>layouts/header}}
+<div id="wrap">
+
+    <!--list table-->
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">No</th>
+            <th scope="col">병원명</th>
+            <th scope="col">구분</th>
+            <th scope="col">영업상태</th>
+            <th scope="col">입원실 수</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#listPaging}}
+            <tr>
+                <th scope="row">{{id}}</th>
+                <td>{{hospitalName}}</td>
+                <td>{{businessTypeName}}</td>
+                <td>{{businessStatus}}</td>
+                <td>{{patientRoomCnt}}</td>
+            </tr>
+        {{/listPaging}}
+        </tbody>
+    </table>
+    <!--list table-->
+
+    <!--pagination-->
+    <nav aria-label="Page navigation example" style="margin-right: 500px">
+        <ul class="pagination justify-content-end">
+            <li class="page-item disabled">
+                <a class="page-link" href="/hospital/search?page={{previous}}">Previous</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="/hospital/search?page={{next}}">Next</a>
+            </li>
+        </ul>
+    </nav>
+    <!--pagination-->
+</div>
+{{>layouts/footer}}
