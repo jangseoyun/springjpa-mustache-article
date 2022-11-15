@@ -11,6 +11,14 @@ td, tr, textarea, button, form {
 .clearfix:before, .clearfix:after {display: block; content: ""; line-height: 0;}
 .clearfix:after {clear: both;}
 
+ul{
+    list-style:none;
+}
+
+li{
+    list-style:none;
+}
+
 #wrap {
     width: 1130px;
     margin: 0px auto;
@@ -27,4 +35,8 @@ td, tr, textarea, button, form {
 
 .float-t {
     float: top;
+}
+
+.p-b-50 {
+    padding-bottom: 50px;
 }

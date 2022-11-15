@@ -65,7 +65,7 @@ public class ArticleController {
 
         model.addAttribute("article", optArticle.get());
         model.addAttribute("commentList", commentList);
-        return "show";
+        return "articles/show";
     }
 
     //---------Select All---------------
@@ -73,7 +73,7 @@ public class ArticleController {
     public String getListAll(Model model) {
         List<Article> articleList = articleRepository.findAll();
         model.addAttribute("articleList", articleList);
-        return "list";
+        return "articles/list";
     }
 
     //---------delete one---------------

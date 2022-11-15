@@ -1,7 +1,8 @@
-{{>layouts/header}}
+{{>layouts/article-header}}
 <div id="wrap">
     <!--테이블 & 페이징-->
     <div style="text-align: center">
+        {{#articleList}}
         <table class="table table-striped">
             <thead>
             <tr>
@@ -12,7 +13,6 @@
             </thead>
 
             <tbody>
-            {{#articleList}}
                 <tr>
                     <th scope="row">{{id}}</th>
                     <td><a href="/articles/{{id}}">{{title}}</a></td>
@@ -28,8 +28,14 @@
                         </form>
                     </td>
                 </tr>
-            {{/articleList}}
             </tbody>
+            {{/articleList}}
+
+            {{^articleList}}
+                <div id="empty-contents" class="p-b-50">
+                    <p>등록된 게시물이 없습니다 ! :-)</p>
+                </div>
+            {{/articleList}}
         </table>
 
         <!--페이징-->

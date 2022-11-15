@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 /*header*/
-#header-img{
+#hospital-header-img{
     background-image: url("../img/health.jpg");
     background-position: 200px;
     height: 150px;

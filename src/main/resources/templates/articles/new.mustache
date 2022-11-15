@@ -1,7 +1,6 @@
+{{>layouts/article-header}}
 
     <div id="wrap">
-        {{>layouts/header}}
-
         <form class="container" action="/articles" method="post">
             <div class="mb-3">
                 <label for="title" class="form-label">제목</label>
@@ -16,9 +15,9 @@
             <button type="submit" class="btn btn-warning">Submit</button>
             <button type="button" class="btn btn-secondary">back</button>
         </form>
-
-        {{>layouts/footer}}
     </div>
+
+{{>layouts/footer}}
 
 
 

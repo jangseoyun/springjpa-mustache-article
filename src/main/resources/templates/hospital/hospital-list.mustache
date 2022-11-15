@@ -1,6 +1,18 @@
 
-{{>layouts/header}}
+{{>layouts/hospital-header}}
 <div id="wrap">
+
+    <li class="nav-item dropdown float-l">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            행정구역별 구분
+        </a>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">서울시</a></li>
+            <li><a class="dropdown-item" href="#">경기도</a></li>
+            <li><a class="dropdown-item" href="#">제주시</a></li>
+        </ul>
+    </li>
+
     <!--search-->
     <form class="d-flex width-250 search" role="search" action="/hospital/search" , method="get">
         <input class="form-control me-2" type="search" placeholder="키워드를 입력해 주세요" aria-label="Search"
