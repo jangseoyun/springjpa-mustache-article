@@ -5,9 +5,14 @@ import hospitaljpa.mustache.domain.entity.Hospital;
 public class HospitalFactory {
 
     public static HospitalResponse toHospitalResponse(Hospital hospital) {
-        HospitalResponse hospitalResponse = new HospitalResponse(hospital.getId(), hospital.getHospitalName(), hospital.getPatientRoomCnt()
-                , hospital.getTotalNumberOfBeds(), setBusinessStatusName(hospital.getBusinessStatusCode()), hospital.getTotalAreaSize()
-                , hospital.getBusinessTypeName());
+        HospitalResponse hospitalResponse = HospitalResponse.builder()
+                .id(hospital.getId())
+                .hospitalName(hospital.getHospitalName())
+                .patientRoomCnt(hospital.getPatientRoomCnt())
+                .totalNumberOfBeds(hospital.getTotalNumberOfBeds())
+                .businessStatusName(setBusinessStatusName(hospital.getBusinessStatusCode()))
+                .businessTypeName(hospital.getBusinessTypeName())
+                .build();
         return hospitalResponse;
     }
 
