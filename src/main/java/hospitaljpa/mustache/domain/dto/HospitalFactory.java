@@ -10,7 +10,7 @@ public class HospitalFactory {
                 .hospitalName(hospital.getHospitalName())
                 .patientRoomCnt(hospital.getPatientRoomCnt())
                 .totalNumberOfBeds(hospital.getTotalNumberOfBeds())
-                .businessStatusName(setBusinessStatusName(hospital.getBusinessStatusCode()))
+                .businessStatus(setBusinessStatusName(hospital.getBusinessStatusCode()))
                 .businessTypeName(hospital.getBusinessTypeName())
                 .build();
         return hospitalResponse;
