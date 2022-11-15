@@ -2,6 +2,7 @@ package hospitaljpa.mustache.controller;
 
 import hospitaljpa.mustache.domain.entity.Hospital;
 import hospitaljpa.mustache.domain.repository.HospitalJpaRepository;
+import hospitaljpa.mustache.service.HospitalService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,16 +17,15 @@ import java.util.Optional;
 @RequestMapping("/api/v1/hospitals")
 public class HospitalRestController {
 
-    private final HospitalJpaRepository hospitalJpaRepository;
+    private final HospitalService hospitalService;
 
     /*------------ select one ----------*/
     @GetMapping("/{id}")
     public ResponseEntity<HospitalResponse> get(@PathVariable Long id) {
-        Optional<Hospital> findOne = hospitalJpaRepository.findById(id);
-        HospitalResponse hospitalResponse = Hospital.of(findOne.get());
+        HospitalResponse hospital = hospitalService.getHospital(id);
         return ResponseEntity
                 .ok()
-                .body(hospitalResponse);
+                .body(hospital);
     }
 
 
