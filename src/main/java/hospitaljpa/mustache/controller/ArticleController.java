@@ -6,7 +6,7 @@ import hospitaljpa.mustache.domain.dto.CommentDto;
 import hospitaljpa.mustache.domain.dto.CommentFactory;
 import hospitaljpa.mustache.domain.entity.Article;
 import hospitaljpa.mustache.domain.entity.ArticleComment;
-import hospitaljpa.mustache.domain.repository.ArticleRepository;
+import hospitaljpa.mustache.domain.repository.ArticleJpaRepository;
 import hospitaljpa.mustache.domain.repository.CommentJpaRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -25,7 +25,7 @@ import java.util.Optional;
 @RequestMapping(value = "/articles")
 @RequiredArgsConstructor
 public class ArticleController {
-    private final ArticleRepository articleRepository;
+    private final ArticleJpaRepository articleRepository;
     private final CommentJpaRepository commentJpaRepository;
 
     //---------main---------------
