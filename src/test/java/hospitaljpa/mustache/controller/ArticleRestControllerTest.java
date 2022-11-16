@@ -9,11 +9,14 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -62,5 +65,24 @@ class ArticleRestControllerTest {
     @Test
     void articleSave() throws Exception {
         objectMapper.writeValueAsBytes(new ArticleAddRequest("제목이닷", "내용이다앗"));
+    }
+
+    @DisplayName("저장 테스트")
+    @Test
+    void jacksonAddTest() throws Exception {
+        ArticleAddRequest requestDto = new ArticleAddRequest("제목테스트", "내용테스트");
+
+        given(articleService.saveArticle(any()))
+                .willReturn(new ArticleResponse(1L, requestDto.getTitle(), requestDto.getContents()));
+
+        String postUrl = String.format("/api/v1/article");
+        mockMvc.perform(post(postUrl)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsBytes(requestDto))
+                        )
+                .andExpect(jsonPath("$.id").exists())
+                .andExpect(jsonPath("$.title", "제목테스트").exists())
+                .andExpect(jsonPath("$.content", "내용테스트").exists())
+                .andDo(print());
     }
 }
