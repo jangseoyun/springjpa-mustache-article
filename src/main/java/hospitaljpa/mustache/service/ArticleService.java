@@ -1,7 +1,7 @@
 package hospitaljpa.mustache.service;
 
 import hospitaljpa.mustache.domain.dto.ArticleFactory;
-import hospitaljpa.mustache.domain.dto.ArticleRequest;
+import hospitaljpa.mustache.domain.dto.ArticleAddRequest;
 import hospitaljpa.mustache.domain.dto.ArticleResponse;
 import hospitaljpa.mustache.domain.entity.Article;
 import hospitaljpa.mustache.domain.repository.ArticleJpaRepository;
@@ -29,7 +29,7 @@ public class ArticleService {
     }
 
     /*------------ save article ----------*/
-    public ArticleResponse saveArticle(ArticleRequest articleRequest) {
+    public ArticleResponse saveArticle(ArticleAddRequest articleRequest) {
         Article article = ArticleFactory.toArticle(articleRequest);
         Article save = articleJpaRepository.save(article);
         log.info("저장: {}", save);

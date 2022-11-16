@@ -1,6 +1,6 @@
 package hospitaljpa.mustache.controller;
 
-import hospitaljpa.mustache.domain.dto.ArticleRequest;
+import hospitaljpa.mustache.domain.dto.ArticleAddRequest;
 import hospitaljpa.mustache.domain.dto.ArticleResponse;
 import hospitaljpa.mustache.service.ArticleService;
 import lombok.RequiredArgsConstructor;
@@ -27,7 +27,7 @@ public class ArticleRestController {
 
     /*------------ save article ----------*/
     @PostMapping("")
-    public ResponseEntity<ArticleResponse> save(ArticleRequest articleRequest) {
+    public ResponseEntity<ArticleResponse> save(ArticleAddRequest articleRequest) {
         ArticleResponse articleResponse = articleService.saveArticle(articleRequest);
         return ResponseEntity
                 .ok()

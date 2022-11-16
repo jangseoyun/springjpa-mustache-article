@@ -1,7 +1,7 @@
 package hospitaljpa.mustache.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import hospitaljpa.mustache.domain.dto.ArticleRequest;
+import hospitaljpa.mustache.domain.dto.ArticleAddRequest;
 import hospitaljpa.mustache.domain.dto.ArticleResponse;
 import hospitaljpa.mustache.service.ArticleService;
 import org.junit.jupiter.api.DisplayName;
@@ -61,6 +61,6 @@ class ArticleRestControllerTest {
     @DisplayName("article 등록 체크")
     @Test
     void articleSave() throws Exception {
-        objectMapper.writeValueAsBytes(new ArticleRequest("제목이닷", "내용이다앗"));
+        objectMapper.writeValueAsBytes(new ArticleAddRequest("제목이닷", "내용이다앗"));
     }
 }

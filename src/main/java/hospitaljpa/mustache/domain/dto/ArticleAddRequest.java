@@ -7,7 +7,7 @@ import lombok.ToString;
 @ToString
 @Getter
 @AllArgsConstructor
-public class ArticleRequest {
+public class ArticleAddRequest {
 
     private String title;
     private String contents;
