@@ -1,12 +1,11 @@
 @charset "UTF-8";
 
-#empty-contents {
-    height: 250px;
-    border-radius: 5px;
-}
-
 /*article list*/
 #empty-contents {
     margin: 15px;
     padding-top: 80px;
+    height: 250px;
+    border-radius: 5px;
 }
+
+

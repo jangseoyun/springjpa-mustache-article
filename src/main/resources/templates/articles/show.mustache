@@ -2,7 +2,7 @@
 <div id="wrap">
 
     {{#article}}
-        <div class="card text-bg-warning mb-3" style="width: 70rem;">
+        <div class="card text-bg-warning mb-3" style="width: 67.5rem;">
             <div class="card-body" style="text-align: center">
                 <h5 class="card-title">{{title}}</h5>
                 <h6 class="card-subtitle mb-2 text-muted">{{id}}번 게시물이 등록되었습니다 :-) </h6>
@@ -14,11 +14,13 @@
     {{/article}}
 
     <!--댓글 작성-->
-    <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="{{id}}번 게시물에 댓글을 작성해 보세요" style="text-align: center">
-        <button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="location.href='/articles/{{id}}/comment'">등록</button>
-    </div>
-
+    <form action="/articles/comment" method="post">
+        <div class="input-group mb-3">
+            <input type="hidden" name="id" value="{{id}}">
+            <input type="text" name="comment" value="" class="form-control" placeholder="{{id}}번 게시물에 댓글을 작성해 보세요" style="text-align: center">
+            <button class="btn btn-outline-secondary" type="submit" id="button-addon2">등록</button>
+        </div>
+    </form>
 
     <!--댓글 리스트-->
     <table class="table" style="margin-top: 50px">
@@ -32,7 +34,8 @@
         <tbody>
         {{#commentList}}
             <tr>
-                <th scope="row">{{id}}</th>
+                <td>{{id}}</td>
+                <td>{{comment}}</td>
             </tr>
         {{/commentList}}
         </tbody>
