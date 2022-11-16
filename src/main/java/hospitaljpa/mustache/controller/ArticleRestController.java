@@ -27,8 +27,8 @@ public class ArticleRestController {
 
     /*------------ save article ----------*/
     @PostMapping("")
-    public ResponseEntity<ArticleResponse> save(ArticleAddRequest articleRequest) {
-        ArticleResponse articleResponse = articleService.saveArticle(articleRequest);
+    public ResponseEntity<ArticleResponse> save(@RequestBody ArticleAddRequest articleAddRequest) {
+        ArticleResponse articleResponse = articleService.saveArticle(articleAddRequest);
         return ResponseEntity
                 .ok()
                 .body(articleResponse);
