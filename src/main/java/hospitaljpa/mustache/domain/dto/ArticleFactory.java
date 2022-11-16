@@ -11,4 +11,10 @@ public class ArticleFactory {
                 , article.getContents());
     }
 
+    public static Article toArticle(ArticleRequest articleRequest) {
+        return new Article(
+                articleRequest.getTitle()
+                , articleRequest.getContents());
+    }
+
 }
