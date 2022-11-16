@@ -12,10 +12,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -109,7 +106,7 @@ public class ArticleController {
 
     //---------comment  등록--------------------
     @GetMapping("/{no}/comment")
-    public String comment(@PathVariable("no") Long no, CommentDto commentDto) {
+    public String comment(@PathVariable("no") Long no, @RequestBody CommentDto commentDto) {
         log.info("no:{}, comment:{}", no, commentDto);
         Article article = articleRepository.findById(no).get();
         ArticleComment articleComment = CommentFactory.toCommentEntity(article, commentDto.getComment());
