@@ -1,5 +1,7 @@
 package hospitaljpa.mustache.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import hospitaljpa.mustache.domain.dto.ArticleRequest;
 import hospitaljpa.mustache.domain.dto.ArticleResponse;
 import hospitaljpa.mustache.service.ArticleService;
 import org.junit.jupiter.api.DisplayName;
@@ -22,6 +24,8 @@ class ArticleRestControllerTest {
 
     @Autowired
     MockMvc mockMvc;
+    @Autowired
+    ObjectMapper objectMapper;
 
     @MockBean
     ArticleService articleService;
@@ -52,5 +56,11 @@ class ArticleRestControllerTest {
                 .andDo(print());
 
         verify(articleService).getArticleOne(id);// getHospital()메소드의 호출이 있었는지 확인
+    }
+
+    @DisplayName("article 등록 체크")
+    @Test
+    void articleSave() throws Exception {
+        objectMapper.writeValueAsBytes(new ArticleRequest("제목이닷", "내용이다앗"));
     }
 }
