@@ -9,7 +9,7 @@ public class UsersFactory {
     public static Users toUsers(UserJoinRequest userJoinRequest) {
         return new Users(
                   userJoinRequest.getUsername()
-                , userJoinRequest.getUsername());
+                , userJoinRequest.getPassword());
     }
 
     public static UserJoinResponse toUserJoinResponse(Users users) {
