@@ -1,6 +1,6 @@
 package hospitaljpa.mustache.service;
 
-import hospitaljpa.mustache.domain.dto.ArticleFactory;
+import hospitaljpa.mustache.domain.factory.ArticleFactory;
 import hospitaljpa.mustache.domain.dto.ArticleAddRequest;
 import hospitaljpa.mustache.domain.dto.ArticleResponse;
 import hospitaljpa.mustache.domain.entity.Article;

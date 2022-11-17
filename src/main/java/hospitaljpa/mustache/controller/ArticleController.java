@@ -3,7 +3,7 @@ package hospitaljpa.mustache.controller;
 
 import hospitaljpa.mustache.domain.dto.ArticleDto;
 import hospitaljpa.mustache.domain.dto.CommentDto;
-import hospitaljpa.mustache.domain.dto.CommentFactory;
+import hospitaljpa.mustache.domain.factory.CommentFactory;
 import hospitaljpa.mustache.domain.entity.Article;
 import hospitaljpa.mustache.domain.entity.ArticleComment;
 import hospitaljpa.mustache.domain.repository.ArticleJpaRepository;
@@ -12,7 +12,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

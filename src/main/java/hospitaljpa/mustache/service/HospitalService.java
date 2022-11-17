@@ -1,7 +1,7 @@
 package hospitaljpa.mustache.service;
 
 import hospitaljpa.mustache.domain.dto.HospitalResponse;
-import hospitaljpa.mustache.domain.dto.HospitalFactory;
+import hospitaljpa.mustache.domain.factory.HospitalFactory;
 import hospitaljpa.mustache.domain.entity.Hospital;
 import hospitaljpa.mustache.domain.repository.HospitalJpaRepository;
 import lombok.RequiredArgsConstructor;
