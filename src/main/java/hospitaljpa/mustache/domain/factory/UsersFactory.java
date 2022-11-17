@@ -14,14 +14,15 @@ public class UsersFactory {
 
     public static UserJoinResponse toUserJoinResponse(Users users) {
         return new UserJoinResponse(
-                users.getUsername()
-                ,setMessage(users.getId())
+                  users.getId()
+                , users.getUsername()
+                , setMessage(users.getId())
         );
     }
 
     private static String setMessage(Long id) {
         if (id == null) {
-            return "이미 가입되어있는 아이디 입니다";
+            return "이미 존재하는 아이디 입니다";
         }
 
         return "가입이 완료 되었습니다";
