@@ -24,7 +24,7 @@ public class UserService {
             return UsersFactory.toUserJoinResponse(saveUser);
         }
 
-        return joinFalse(userJoinRequest.getUsername());
+        return joinFail(userJoinRequest.getUsername());
     }
 
     public UserResponse findUser(Long id) {
@@ -32,8 +32,8 @@ public class UserService {
         return UsersFactory.toUserGetResponse(getUser);
     }
 
-    private UserResponse joinFalse(String username) {
-        return new UserResponse( username, "이미 존재하는 아이디 입니다.");
+    private UserResponse joinFail(String username) {
+        return new UserResponse(username, "이미 존재하는 아이디 입니다.");
     }
 
 }

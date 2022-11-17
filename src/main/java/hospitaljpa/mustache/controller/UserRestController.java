@@ -15,6 +15,7 @@ public class UserRestController {
 
     private final UserService userService;
 
+    /*--------- 회원가입 ----------*/
     @PostMapping("")
     public ResponseEntity<UserResponse> join(UserJoinRequest userJoinRequest) {
         UserResponse joinResult = userService.join(userJoinRequest);
@@ -23,6 +24,7 @@ public class UserRestController {
                 .body(joinResult);
     }
 
+    /*--------- 회원 검색 ----------*/
     @GetMapping("/{id}")
     public ResponseEntity<UserResponse> getUser(@PathVariable("id") Long id) {
         UserResponse user = userService.findUser(id);
