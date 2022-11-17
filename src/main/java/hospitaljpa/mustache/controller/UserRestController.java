@@ -1,14 +1,12 @@
 package hospitaljpa.mustache.controller;
 
 import hospitaljpa.mustache.domain.dto.UserJoinRequest;
-import hospitaljpa.mustache.domain.dto.UserJoinResponse;
+import hospitaljpa.mustache.domain.dto.UserResponse;
 import hospitaljpa.mustache.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -18,11 +16,19 @@ public class UserRestController {
     private final UserService userService;
 
     @PostMapping("")
-    public ResponseEntity<UserJoinResponse> join(UserJoinRequest userJoinRequest) {
-        UserJoinResponse joinResult = userService.join(userJoinRequest);
+    public ResponseEntity<UserResponse> join(UserJoinRequest userJoinRequest) {
+        UserResponse joinResult = userService.join(userJoinRequest);
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(joinResult);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<UserResponse> getUser(@PathVariable("id") Long id) {
+        UserResponse user = userService.findUser(id);
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(user);
     }
 
 
