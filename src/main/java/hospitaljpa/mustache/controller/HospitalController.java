@@ -43,10 +43,11 @@ public class HospitalController {
             , @PageableDefault(size = 10, sort = "id", direction = Sort.Direction.ASC) Pageable pageable
             , Model model) {
         log.info("hospital search: {}", keyword);
-        List<HospitalResponse> responseList = hospitalService.searchHospitalName(keyword, pageable);
+        Slice<HospitalResponse> responseList = hospitalService.searchHospitalName(keyword, pageable);
         model.addAttribute("listPaging", responseList);
-        model.addAttribute("previous", pageable.previousOrFirst().getPageNumber());
-        model.addAttribute("next", pageable.next().getPageNumber());
+        model.addAttribute("previous", responseList.previousOrFirstPageable().getPageNumber());
+        model.addAttribute("next", responseList.nextOrLastPageable().getPageNumber());
+        model.addAttribute("keyword", keyword);
         return "hospital/search-list";
     }
 

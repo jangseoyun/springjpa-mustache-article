@@ -1,8 +1,8 @@
 package hospitaljpa.mustache.service;
 
 import hospitaljpa.mustache.domain.dto.HospitalResponse;
-import hospitaljpa.mustache.domain.factory.HospitalFactory;
 import hospitaljpa.mustache.domain.entity.Hospital;
+import hospitaljpa.mustache.domain.factory.HospitalFactory;
 import hospitaljpa.mustache.domain.repository.HospitalJpaRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -11,9 +11,8 @@ import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
+import java.util.function.Function;
 
 @Slf4j
 @Service
@@ -33,12 +32,16 @@ public class HospitalService {
         return hospitalResponse;
     }
 
-    public List<HospitalResponse> searchHospitalName(String keyword, Pageable pageable) {
+    public Slice<HospitalResponse> searchHospitalName(String keyword, Pageable pageable) {
         Slice<Hospital> findHospitalName = hospitalJpaRepository.findAllByHospitalNameContaining(keyword, pageable);
-        List<HospitalResponse> responseList = findHospitalName
-                .stream()
-                .map(h -> HospitalFactory.toHospitalResponse(h))
-                .collect(Collectors.toList());
-        return responseList;
+        log.info("count: {}", findHospitalName.getSize());
+        Slice<HospitalResponse> responseSlice = findHospitalName.map(new Function<Hospital, HospitalResponse>() {
+            @Override
+            public HospitalResponse apply(Hospital hospital) {
+                return HospitalFactory.toHospitalResponse(hospital);
+            }
+        });
+
+        return responseSlice;
     }
 }
