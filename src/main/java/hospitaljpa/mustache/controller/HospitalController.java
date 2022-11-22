@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.List;
-
 @Slf4j
 @Controller
 @RequiredArgsConstructor
@@ -57,6 +55,14 @@ public class HospitalController {
         log.info("hospital 웹 페이지 설명폼");
         return "hospital/readme";
     }
+
+    /*------------ 병원 리뷰 등록폼 ----------*/
+    @GetMapping("/review")
+    public String reviewForm(@RequestParam(name = "hospital-id") Long id) {
+        log.info("hospital 리뷰 작성 폼, hospital-id {}" ,id);
+        return "hospital/review-list";
+    }
+
 
 
 }
