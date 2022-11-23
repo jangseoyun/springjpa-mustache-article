@@ -1,19 +1,33 @@
 {{>layouts/hospital-header}}
 <div id="wrap">
-    <div>
-        <h2>ㅇㅇㅇ 병원의 리뷰를 작성해 주세요</h2>
-        <div class="form-floating">
-            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
-            <label for="floatingTextarea2">Comments</label>
-        </div>
+    <!--리뷰 등록 폼-->
+    <div id="review-form">
+        <h2>{{name}}의 리뷰를 작성해 주세요</h2>
+        <form action="/hospital/review" method="post">
+            <input type="hidden" name="id" value="{{id}}">
+            <!--title-->
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="inputGroup-sizing-default">Title</span>
+                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="title" value="">
+            </div>
+            <!--title-->
+
+            <div class="form-floating clearfix">
+                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px" name="comment"></textarea>
+                <label for="floatingTextarea2">Comments</label>
+                <button id="review-btn" class="btn btn-primary" type="submit">리뷰 등록</button>
+            </div>
+        </form>
     </div>
+    <!--리뷰 등록 폼-->
+
+    <!--리뷰 리스트-->
     <table class="table">
         <thead>
         <tr>
             <th scope="col">No</th>
-            <th scope="col">nickname</th>
-            <th scope="col">review</th>
-            <th scope="col">리뷰 작성 횟수</th>
+            <th scope="col">작성자</th>
+            <th scope="col">리뷰</th>
         </tr>
         </thead>
         <tbody>
@@ -21,10 +35,10 @@
             <th scope="row">1</th>
             <td>Mark</td>
             <td>Otto</td>
-            <td>@mdo</td>
         </tr>
         </tbody>
     </table>
+    <!--리뷰 리스트-->
 
 </div>
 {{>layouts/footer}}
