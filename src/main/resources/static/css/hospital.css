@@ -16,3 +16,13 @@
 .search{
     margin-bottom: 40px;
 }
+
+/*hospital-review*/
+#review-btn {
+    float: right;
+    margin-top: 5px;
+}
+
+#review-form {
+    margin-bottom: 35px;
+}
