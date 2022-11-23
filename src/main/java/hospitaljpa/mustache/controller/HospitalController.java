@@ -68,8 +68,8 @@ public class HospitalController {
 
     /*------------ 병원 리뷰 등록 ----------*/
     @PostMapping("/review")
-    public String reviewAdd(@RequestBody ReviewRequest reviewRequest) {
-        log.info("리뷰 등록: {}", reviewRequest);
+    public String reviewAdd(ReviewRequest reviewRequest) {
+        log.info("리뷰 등록: {}", reviewRequest);//todo : view에서 값 받아오는것까지 확인
 
         return "redirect:/hospital/review";
     }

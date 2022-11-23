@@ -8,7 +8,7 @@ import lombok.ToString;
 @Getter
 @AllArgsConstructor
 public class ReviewRequest {
-    private Long id;
+    private Long hospitalId;
     private String title;
     private String comment;
     private String userId;

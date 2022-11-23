@@ -1,24 +1,25 @@
 {{>layouts/hospital-header}}
 <div id="wrap">
     <!--리뷰 등록 폼-->
-    <div id="review-form">
-        <h2>{{name}}의 리뷰를 작성해 주세요</h2>
-        <form action="/hospital/review" method="post">
-            <input type="hidden" name="id" value="{{id}}">
-            <!--title-->
-            <div class="input-group mb-3">
-                <span class="input-group-text" id="inputGroup-sizing-default">Title</span>
-                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="title" value="">
-            </div>
-            <!--title-->
+    <form action="/hospital/review" method="post">
+        <div id="review-form">
+            <h2>{{name}}의 리뷰를 작성해 주세요</h2>
+                <input type="hidden" name="hospitalId" value="{{id}}">
+                <input type="hidden" name="userId" value="">
+                <!--title-->
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Title</span>
+                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="title" value="">
+                </div>
+                <!--title-->
 
-            <div class="form-floating clearfix">
-                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px" name="comment"></textarea>
-                <label for="floatingTextarea2">Comments</label>
-                <button id="review-btn" class="btn btn-primary" type="submit">리뷰 등록</button>
-            </div>
-        </form>
-    </div>
+                <div class="form-floating clearfix">
+                    <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px" name="comment"></textarea>
+                    <label for="floatingTextarea2">Comments</label>
+                    <button id="review-btn" class="btn btn-primary" type="submit">리뷰 등록</button>
+                </div>
+        </div>
+    </form>
     <!--리뷰 등록 폼-->
 
     <!--리뷰 리스트-->

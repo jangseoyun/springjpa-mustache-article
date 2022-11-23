@@ -16,6 +16,7 @@ public class HospitalReview {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "review_id")
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -30,5 +31,9 @@ public class HospitalReview {
 
     @Column(name = "patient_name")
     private String patientName;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private Users users;
 
 }
