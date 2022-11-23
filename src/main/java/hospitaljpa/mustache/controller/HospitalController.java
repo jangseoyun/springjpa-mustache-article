@@ -1,6 +1,7 @@
 package hospitaljpa.mustache.controller;
 
 import hospitaljpa.mustache.domain.dto.HospitalResponse;
+import hospitaljpa.mustache.domain.dto.ReviewRequest;
 import hospitaljpa.mustache.domain.entity.Hospital;
 import hospitaljpa.mustache.service.HospitalService;
 import lombok.RequiredArgsConstructor;
@@ -11,9 +12,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @Controller
@@ -58,11 +57,21 @@ public class HospitalController {
 
     /*------------ 병원 리뷰 등록폼 ----------*/
     @GetMapping("/review")
-    public String reviewForm(@RequestParam(name = "hospital-id") Long id) {
-        log.info("hospital 리뷰 작성 폼, hospital-id {}" ,id);
+    public String reviewForm(@RequestParam(name = "hospital-id") Long id
+            , @RequestParam(name = "hospital-name") String name
+            , Model model) {
+        log.info("hospital 리뷰 작성 폼, hospital-id {}", id);
+        model.addAttribute("name", name);
+        model.addAttribute("id", id);
         return "hospital/review-list";
     }
 
+    /*------------ 병원 리뷰 등록 ----------*/
+    @PostMapping("/review")
+    public String reviewAdd(@RequestBody ReviewRequest reviewRequest) {
+        log.info("리뷰 등록: {}", reviewRequest);
 
+        return "redirect:/hospital/review";
+    }
 
 }
