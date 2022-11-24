@@ -1,9 +1,13 @@
 package hospitaljpa.mustache.service;
 
 import hospitaljpa.mustache.domain.dto.HospitalResponse;
+import hospitaljpa.mustache.domain.dto.ReviewDto;
 import hospitaljpa.mustache.domain.entity.Hospital;
+import hospitaljpa.mustache.domain.entity.HospitalReview;
 import hospitaljpa.mustache.domain.factory.HospitalFactory;
+import hospitaljpa.mustache.domain.factory.ReviewFactory;
 import hospitaljpa.mustache.domain.repository.HospitalJpaRepository;
+import hospitaljpa.mustache.domain.repository.ReviewJpaRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
@@ -21,6 +25,7 @@ import java.util.function.Function;
 public class HospitalService {
 
     private final HospitalJpaRepository hospitalJpaRepository;
+    private final ReviewJpaRepository reviewJpaRepository;
 
     public Slice<Hospital> getHospitalList(Pageable pageable) {
         return hospitalJpaRepository.findAll(pageable);
@@ -43,5 +48,15 @@ public class HospitalService {
         });
 
         return responseSlice;
+    }
+
+    @Transactional
+    public Long saveReview(ReviewDto reviewDto) {
+        //호스피탈 호출
+        Optional<Hospital> getHospital = hospitalJpaRepository.findById(reviewDto.getHospitalId());
+        HospitalReview createEntity = ReviewFactory.toReviewEntity(reviewDto, getHospital.get());
+        Long reviewId = reviewJpaRepository.save(createEntity).getId();//reviewId
+        log.info("review 저장 성공: {}", reviewId);
+        return reviewId;
     }
 }

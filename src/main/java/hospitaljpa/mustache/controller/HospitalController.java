@@ -1,7 +1,7 @@
 package hospitaljpa.mustache.controller;
 
 import hospitaljpa.mustache.domain.dto.HospitalResponse;
-import hospitaljpa.mustache.domain.dto.ReviewRequest;
+import hospitaljpa.mustache.domain.dto.ReviewDto;
 import hospitaljpa.mustache.domain.entity.Hospital;
 import hospitaljpa.mustache.service.HospitalService;
 import lombok.RequiredArgsConstructor;
@@ -68,9 +68,10 @@ public class HospitalController {
 
     /*------------ 병원 리뷰 등록 ----------*/
     @PostMapping("/review")
-    public String reviewAdd(ReviewRequest reviewRequest) {
-        log.info("리뷰 등록: {}", reviewRequest);//todo : view에서 값 받아오는것까지 확인
-
+    public String reviewAdd(ReviewDto reviewDto) {
+        log.info("리뷰 등록: {}", reviewDto);
+        //리뷰 테이블 저장하기
+        hospitalService.saveReview(reviewDto);
         return "redirect:/hospital/review";
     }
 
