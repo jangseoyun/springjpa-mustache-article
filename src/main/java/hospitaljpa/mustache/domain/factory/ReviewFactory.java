@@ -12,4 +12,14 @@ public class ReviewFactory {
                 , reviewDto.getComment()
                 , reviewDto.getUserName());
     }
+
+    public static ReviewDto toReviewDto(HospitalReview hospitalReview) {
+        return new ReviewDto(
+                  hospitalReview.getId()
+                , hospitalReview.getHospital().getId()
+                , hospitalReview.getTitle()
+                , hospitalReview.getReview()
+                , hospitalReview.getUsersName());
+    }
+
 }

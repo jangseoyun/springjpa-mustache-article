@@ -15,8 +15,10 @@ import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -58,5 +60,13 @@ public class HospitalService {
         Long reviewId = reviewJpaRepository.save(createEntity).getId();//reviewId
         log.info("review 저장 성공: {}", reviewId);
         return reviewId;
+    }
+
+    public List<ReviewDto> getHospitalIdReviewList(Long hospitalId) {
+        List<HospitalReview> findHospitalAndId = reviewJpaRepository.findByHospitalId(hospitalId);
+        log.info("findHospitalId-ReviewList:{}", findHospitalAndId);
+        return findHospitalAndId.stream()
+                .map(hospitalReview -> ReviewFactory.toReviewDto(hospitalReview))
+                .collect(Collectors.toList());
     }
 }
