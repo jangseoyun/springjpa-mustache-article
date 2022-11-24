@@ -69,4 +69,9 @@ public class HospitalService {
                 .map(hospitalReview -> ReviewFactory.toReviewDto(hospitalReview))
                 .collect(Collectors.toList());
     }
+
+    public ReviewDto getReviewIdObject(Long reviewId) {
+        Optional<HospitalReview> getReviewIdObejct = reviewJpaRepository.findById(reviewId);
+        return ReviewFactory.toReviewDto(getReviewIdObejct.get());
+    }
 }
