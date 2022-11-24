@@ -36,6 +36,6 @@
 
 # UI
 
-![병원정보 리스트](img.png)
+![](hospital-list.jpg)
 
-![img_1.png](img_1.png)
+![](review-form.jpg)
