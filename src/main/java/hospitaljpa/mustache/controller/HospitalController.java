@@ -71,8 +71,9 @@ public class HospitalController {
     public String reviewAdd(ReviewDto reviewDto) {
         log.info("리뷰 등록: {}", reviewDto);
         //리뷰 테이블 저장하기
-        hospitalService.saveReview(reviewDto);
-        return "redirect:/hospital/review";
+        HospitalResponse saveReview = hospitalService.saveReview(reviewDto);
+        log.info("등록된 리뷰 : {}", saveReview);
+        return "redirect:/hospital/review?hospital-id=" + saveReview.getId() + "&hospital-name=" + saveReview.getHospitalName();
     }
 
 }

@@ -29,16 +29,19 @@ public class HospitalService {
     private final HospitalJpaRepository hospitalJpaRepository;
     private final ReviewJpaRepository reviewJpaRepository;
 
+    /*------------ 리스트 + 페이징 ----------*/
     public Slice<Hospital> getHospitalList(Pageable pageable) {
         return hospitalJpaRepository.findAll(pageable);
     }
 
+    /*------------ select one ----------*/
     public HospitalResponse getHospital(Long id) {
         Optional<Hospital> findOne = hospitalJpaRepository.findById(id);
         HospitalResponse hospitalResponse = HospitalFactory.toHospitalResponse(findOne.get());
         return hospitalResponse;
     }
 
+    /*------------ 키워드 검색 ---------------*/
     public Slice<HospitalResponse> searchHospitalName(String keyword, Pageable pageable) {
         Slice<Hospital> findHospitalName = hospitalJpaRepository.findAllByHospitalNameContaining(keyword, pageable);
         log.info("count: {}", findHospitalName.getSize());
@@ -52,16 +55,19 @@ public class HospitalService {
         return responseSlice;
     }
 
+    /*------------ 병원 리뷰 등록 ----------*/
     @Transactional
-    public Long saveReview(ReviewDto reviewDto) {
+    public HospitalResponse saveReview(ReviewDto reviewDto) {
         //호스피탈 호출
         Optional<Hospital> getHospital = hospitalJpaRepository.findById(reviewDto.getHospitalId());
         HospitalReview createEntity = ReviewFactory.toReviewEntity(reviewDto, getHospital.get());
-        Long reviewId = reviewJpaRepository.save(createEntity).getId();//reviewId
-        log.info("review 저장 성공: {}", reviewId);
-        return reviewId;
+        Hospital hospital = reviewJpaRepository.save(createEntity).getHospital();//reviewId
+        HospitalResponse hospitalResponse = HospitalFactory.toHospitalResponse(hospital);
+        log.info("review 저장 성공: {}", hospitalResponse);
+        return hospitalResponse;
     }
 
+    /*------------ hospital-id review list select ----------*/
     public List<ReviewDto> getHospitalIdReviewList(Long hospitalId) {
         List<HospitalReview> findHospitalAndId = reviewJpaRepository.findByHospitalId(hospitalId);
         log.info("findHospitalId-ReviewList:{}", findHospitalAndId);
@@ -70,6 +76,7 @@ public class HospitalService {
                 .collect(Collectors.toList());
     }
 
+    /*------------ review-id review list select ----------*/
     public ReviewDto getReviewIdObject(Long reviewId) {
         Optional<HospitalReview> getReviewIdObejct = reviewJpaRepository.findById(reviewId);
         return ReviewFactory.toReviewDto(getReviewIdObejct.get());
