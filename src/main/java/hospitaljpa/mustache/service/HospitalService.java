@@ -67,21 +67,4 @@ public class HospitalService {
         return hospitalResponse;
     }
 
-    /*------------ hospital-id review list select ----------*/
-    public List<ReviewDto> getHospitalIdReviewList(Long hospitalId) {
-        List<HospitalReview> findHospitalAndId = reviewJpaRepository.findByHospitalId(hospitalId);
-        log.info("findHospitalId-ReviewList:{}", findHospitalAndId);
-        return findHospitalAndId.stream()
-                .map(hospitalReview -> ReviewFactory.toReviewDto(hospitalReview))
-                .collect(Collectors.toList());
-    }
-
-    /*------------ review-id review list select ----------*/
-    public ReviewDto getReviewIdObject(Long reviewId) {
-        HospitalReview getReviewIdObejct = reviewJpaRepository
-                .findById(reviewId)
-                .orElseThrow(() -> new RuntimeException("해당 id가 없습니다"));
-
-        return ReviewFactory.toReviewDto(getReviewIdObejct);
-    }
 }

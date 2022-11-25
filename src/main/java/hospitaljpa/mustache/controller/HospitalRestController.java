@@ -31,22 +31,4 @@ public class HospitalRestController {
                 .body(hospital);
     }
 
-    /*------------ hospital-id review list select ----------*/
-    @GetMapping("/{hospitalId}/reviews")
-    public ResponseEntity getHospitalReviews(@PathVariable("hospitalId") Long id) {
-        log.info("hospital 리뷰 리스트 요청, hospital-id: {}", id);
-        List<ReviewDto> hospitalIdReviewList = hospitalService.getHospitalIdReviewList(id);
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(hospitalIdReviewList);
-    }
-
-    /*------------ review-id review list select ----------*/
-    @GetMapping("/review/{id}")
-    public ResponseEntity getReviewOne(@PathVariable("id") Long id) {
-        log.info("review 리뷰 요청 : {}", id);
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(hospitalService.getReviewIdObject(id));
-    }
 }
