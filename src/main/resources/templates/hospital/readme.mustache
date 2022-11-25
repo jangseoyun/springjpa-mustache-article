@@ -1,3 +1,34 @@
-<div>
-    Readme 작성
+{{>layouts/hospital-header}}
+<div id="wrap">
+    <h1>README!</h1>
+    <div>
+        <h2>개발 환경</h2>
+        🟧 BackEnd (Mac)<br>
+        - Language/Skills: JAVA 11, Swagger<br>
+        - Framework: Springboot 2.7.5, Junit5<br>
+        - Build tool: Gradle<br>
+        - ORM: JPA<br>
+        - IDE: IntelliJ<br>
+        - DB: Mysql<br>
+        - Library: Lombok<br>
+        🟧 FrontEnd: HTML / CSS / Mustache / bootstrap<br>
+        🟧 Server: AWS / EC2<br>
+        <br>
+        <hr>
+        <h2>구현 기능</h2>
+        🟧 데이터 파싱<br>
+          - Data Parser : TSV 파일을 [Tab]으로 분리하여 필요한 데이터만 파싱<br>
+          - 추출 데이터 상세<br>
+            개방서비스명, 개방자치단체코드, 관리번호, 인허가일자<br>
+            영업상태코드 (2: 휴업 3: 폐업 13: 영업중)<br>
+            영업상태(1: 영업/정상 2: 휴업 3: 폐업 4: 취소/말소영업상태구분)<br>
+            소재지 전화, 소재지 전체 주소, 도로명 주소, 병원명<br>
+            업태구분명, 의료인 수, 입원실 수, 병상 수, 총 면적<br>
+        🟧 병원 전체 리스트 (페이징)<br>
+        🟧 병원명 검색<br>
+        🟧 행정자치코드(시군구) 카테고리 구분 기능<br>
+        🟧 병원별 댓글 작성<br>
+        🟧 댓글 리스트 조회 및 작성된 댓글 개수 조회<br>
+    </div>
 </div>
+{{>layouts/footer}}

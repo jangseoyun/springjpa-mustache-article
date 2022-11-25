@@ -29,7 +29,7 @@
         {{#listPaging}}
             <tr>
                 <th scope="row">{{id}}</th>
-                <td>{{hospitalName}}</td>
+                <td><a href="/hospital/review-info?hospital-id={{id}}&hospital-name={{hospitalName}}">{{hospitalName}}</a></td>
                 <td>{{businessTypeName}}</td>
                 <td>{{businessStatus}}</td>
                 <td>{{patientRoomCnt}}</td>
