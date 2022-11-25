@@ -56,4 +56,11 @@ public class HospitalController {
         return "hospital/readme";
     }
 
+    /*------------ swagger api 요청 ----------*/
+    @GetMapping("/api")
+    public String swagger() {
+        log.info("swagger api 문서 요청");
+        return "swagger/swagger-api";
+    }
+
 }
