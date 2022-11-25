@@ -14,6 +14,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Slf4j
 @Controller
 @RequiredArgsConstructor
@@ -61,8 +63,10 @@ public class HospitalController {
             , @RequestParam(name = "hospital-name") String name
             , Model model) {
         log.info("hospital 리뷰 작성 폼, hospital-id {}", id);
+        List<ReviewDto> hospitalIdReviewList = hospitalService.getHospitalIdReviewList(id);
         model.addAttribute("name", name);
         model.addAttribute("id", id);
+        model.addAttribute("reviewList", hospitalIdReviewList);
         return "hospital/review-list";
     }
 

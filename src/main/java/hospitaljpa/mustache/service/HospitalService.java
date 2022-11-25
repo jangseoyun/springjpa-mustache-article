@@ -78,7 +78,10 @@ public class HospitalService {
 
     /*------------ review-id review list select ----------*/
     public ReviewDto getReviewIdObject(Long reviewId) {
-        Optional<HospitalReview> getReviewIdObejct = reviewJpaRepository.findById(reviewId);
-        return ReviewFactory.toReviewDto(getReviewIdObejct.get());
+        HospitalReview getReviewIdObejct = reviewJpaRepository
+                .findById(reviewId)
+                .orElseThrow(() -> new RuntimeException("해당 id가 없습니다"));
+
+        return ReviewFactory.toReviewDto(getReviewIdObejct);
     }
 }
