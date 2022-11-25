@@ -1,6 +1,7 @@
 package hospitaljpa.mustache.service;
 
 import hospitaljpa.mustache.domain.dto.ReviewDto;
+import hospitaljpa.mustache.domain.dto.ReviewResponse;
 import hospitaljpa.mustache.domain.entity.HospitalReview;
 import hospitaljpa.mustache.domain.factory.ReviewFactory;
 import hospitaljpa.mustache.domain.repository.ReviewJpaRepository;
@@ -27,12 +28,27 @@ public class ReviewService {
                 .collect(Collectors.toList());
     }
 
-    /*------------ review-id review list select ----------*/
+    /*------------ review-id review select one ----------*/
     public ReviewDto getReviewIdObject(Long reviewId) {
         HospitalReview getReviewIdObejct = reviewJpaRepository
                 .findById(reviewId)
                 .orElseThrow(() -> new RuntimeException("해당 id가 없습니다"));
 
         return ReviewFactory.toReviewDto(getReviewIdObejct);
+    }
+
+    /*------------ hospital-id review list select + total count ----------*/
+    public ReviewResponse getReviewListAndTotalCnt(Long hospitalId) {
+
+        Long reviewTotalCnt = reviewJpaRepository.countByHospitalId(hospitalId);
+        List<HospitalReview> reviewList = reviewJpaRepository.findByHospitalId(hospitalId);
+
+        List<ReviewDto> reviewDtoList = reviewList.stream()
+                .map(hospitalReview -> ReviewFactory.toReviewDto(hospitalReview))
+                .collect(Collectors.toList());
+
+        ReviewResponse reviewResponse = new ReviewResponse(reviewDtoList, reviewTotalCnt);
+
+        return reviewResponse;
     }
 }

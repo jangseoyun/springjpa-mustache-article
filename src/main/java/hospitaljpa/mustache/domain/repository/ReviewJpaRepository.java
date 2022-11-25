@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface ReviewJpaRepository extends JpaRepository<HospitalReview, Long> {
     List<HospitalReview> findByHospitalId(Long id);
+    Long countByHospitalId(Long HospitalId);
 }

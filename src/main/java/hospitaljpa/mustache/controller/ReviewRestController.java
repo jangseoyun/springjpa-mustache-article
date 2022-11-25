@@ -1,6 +1,7 @@
 package hospitaljpa.mustache.controller;
 
 import hospitaljpa.mustache.domain.dto.ReviewDto;
+import hospitaljpa.mustache.domain.dto.ReviewResponse;
 import hospitaljpa.mustache.service.ReviewService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -38,5 +39,13 @@ public class ReviewRestController {
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(reviewService.getReviewIdObject(id));
+    }
+
+    @GetMapping("/review/{id}/cnt")
+    public ResponseEntity<ReviewResponse> getReviewListAndTotalCnt(@PathVariable("id") Long id) {
+        log.info("review 리뷰 + count 요청 : {}", id);
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(reviewService.getReviewListAndTotalCnt(id));
     }
 }
