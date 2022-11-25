@@ -29,25 +29,27 @@
         <tr>
             <th scope="col">No</th>
             <th scope="col">작성자</th>
-            <th scope="col">리뷰</th>
+            {{#reviewListAndTotalCnt}}
+            <th scope="col">리뷰(total:{{reviewTotalCnt}}개)</th>
+            {{/reviewListAndTotalCnt}}
         </tr>
         </thead>
         <tbody>
-        {{#reviewList}}
+        {{#reviewListAndTotalCnt.reviewList}}
         <tr>
             <th scope="row">{{id}}</th>
             <td>{{userName}}</td>
             <td>{{comment}}</td>
         </tr>
         </tbody>
-        {{/reviewList}}
+        {{/reviewListAndTotalCnt.reviewList}}
     </table>
 
-    {{^reviewList}}
+    {{^reviewListAndTotalCnt.reviewList}}
         <div>
             작성된 리뷰가 존재하지 않습니다
         </div>
-    {{/reviewList}}
+    {{/reviewListAndTotalCnt.reviewList}}
     <!--리뷰 리스트-->
 
 </div>

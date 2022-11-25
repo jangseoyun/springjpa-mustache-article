@@ -2,6 +2,7 @@ package hospitaljpa.mustache.controller;
 
 import hospitaljpa.mustache.domain.dto.HospitalResponse;
 import hospitaljpa.mustache.domain.dto.ReviewDto;
+import hospitaljpa.mustache.domain.dto.ReviewResponse;
 import hospitaljpa.mustache.service.HospitalService;
 import hospitaljpa.mustache.service.ReviewService;
 import lombok.RequiredArgsConstructor;
@@ -44,7 +45,20 @@ public class ReviewController {
         //리뷰 테이블 저장하기
         HospitalResponse saveReview = hospitalService.saveReview(reviewDto);
         log.info("등록된 리뷰 : {}", saveReview);
-        return "redirect:/hospital/review?hospital-id=" + saveReview.getId() + "&hospital-name=" + saveReview.getHospitalName();
+        return "redirect:/hospital/review-info?hospital-id=" + saveReview.getId() + "&hospital-name=" + saveReview.getHospitalName();
+    }
+
+    /*------------ 해당 병원 리뷰 + 리뷰 total count ----------*/
+    @GetMapping("/review-info")
+    public String reviewFormTotalCnt(@RequestParam(name = "hospital-id") Long id
+            , @RequestParam(name = "hospital-name") String name
+            , Model model) {
+        log.info("hospital 리뷰 작성 폼, hospital-id {}", id);
+        ReviewResponse reviewListAndTotalCnt = reviewService.getReviewListAndTotalCnt(id);
+        model.addAttribute("name", name);
+        model.addAttribute("id", id);
+        model.addAttribute("reviewListAndTotalCnt", reviewListAndTotalCnt);
+        return "hospital/review-list";
     }
 
 }
