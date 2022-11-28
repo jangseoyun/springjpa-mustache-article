@@ -5,3 +5,7 @@ server:
       force-response: true
       charset: UTF-8
 
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
