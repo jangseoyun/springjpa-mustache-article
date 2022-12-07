@@ -1,12 +1,12 @@
 package hospitaljpa.mustache.controller;
 
-import hospitaljpa.mustache.domain.dto.UserJoinRequest;
-import hospitaljpa.mustache.domain.dto.UserResponse;
+import hospitaljpa.mustache.domain.dto.*;
 import hospitaljpa.mustache.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
@@ -16,21 +16,17 @@ public class UserRestController {
     private final UserService userService;
 
     /*--------- 회원가입 ----------*/
-    @PostMapping("")
-    public ResponseEntity<UserResponse> join(UserJoinRequest userJoinRequest) {
-        UserResponse joinResult = userService.join(userJoinRequest);
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(joinResult);
+    @PostMapping("/join")
+    public Response<UserJoinResponse> join(@RequestBody UserJoinRequest userJoinRequest) {
+        UserDto userDto = userService.join(userJoinRequest);
+        return Response.success(new UserJoinResponse(userDto.getUsername(), userDto.getEmailAddress()));
     }
 
-    /*--------- 회원 검색 ----------*/
-    @GetMapping("/{id}")
-    public ResponseEntity<UserResponse> getUser(@PathVariable("id") Long id) {
-        UserResponse user = userService.findUser(id);
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(user);
+    /*--------- 로그인 ----------*/
+    @PostMapping("/login")
+    public Response<UserLoginResponse> login(@RequestBody UserLoginRequest userLoginRequest) {
+        String token = userService.login(userLoginRequest.getUsername(), userLoginRequest.getPassword());
+        return Response.success(new UserLoginResponse(token));
     }
 
 
