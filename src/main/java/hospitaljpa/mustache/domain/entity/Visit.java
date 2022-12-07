@@ -1,5 +1,6 @@
 package hospitaljpa.mustache.domain.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,11 +22,13 @@ public class Visit {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "hospital_id")
+    @JoinColumn(name = "id")
+    @JsonIgnore
     private Hospital hospital;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
+    @JsonIgnore
     private Users users;
 
     @Column(name = "disease")
@@ -37,4 +40,10 @@ public class Visit {
     @Column(name = "create_date")
     private LocalDateTime createDate;
 
+    public Visit(Hospital hospital, Users users, String disease, float amount) {
+        this.hospital = hospital;
+        this.users = users;
+        this.disease = disease;
+        this.amount = amount;
+    }
 }

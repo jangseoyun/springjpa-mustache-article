@@ -10,12 +10,10 @@ public class VisitCreateFactory {
 
     public static Visit toVisitEntity(Hospital setHospital, Users setUser, VisitCreateRequest visitCreateRequest) {
         return new Visit(
-                null
-                , setHospital
+                  setHospital
                 , setUser
                 , visitCreateRequest.getDisease()
-                , visitCreateRequest.getAmount()
-                , null);
+                , visitCreateRequest.getAmount());
     }
 
     public static VisitCreateResponse toVisitResponse(Visit getVisit) {

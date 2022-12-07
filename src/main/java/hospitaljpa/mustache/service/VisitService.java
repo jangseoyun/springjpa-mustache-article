@@ -2,6 +2,7 @@ package hospitaljpa.mustache.service;
 
 import hospitaljpa.mustache.domain.dto.VisitCreateRequest;
 import hospitaljpa.mustache.domain.dto.VisitCreateResponse;
+import hospitaljpa.mustache.domain.dto.VisitFindAllResponse;
 import hospitaljpa.mustache.domain.entity.Hospital;
 import hospitaljpa.mustache.domain.entity.Users;
 import hospitaljpa.mustache.domain.entity.Visit;
@@ -14,6 +15,8 @@ import hospitaljpa.mustache.exception.HospitalReviewException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Slf4j
 @Service
@@ -36,5 +39,11 @@ public class VisitService {
         Visit visit = VisitCreateFactory.toVisitEntity(getHospital, getUser, visitCreateRequest);
         Visit saveVisitBook = visitJpaRepository.save(visit);
         return VisitCreateFactory.toVisitResponse(saveVisitBook);
+    }
+
+    public VisitFindAllResponse findAll() {
+        List<Visit> visitList = visitJpaRepository.findAll();
+        int count = visitList.size();
+        return new VisitFindAllResponse(visitList, count);
     }
 }
