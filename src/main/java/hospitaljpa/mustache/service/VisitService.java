@@ -1,5 +1,6 @@
 package hospitaljpa.mustache.service;
 
+import hospitaljpa.mustache.domain.dto.FindByUserVisitResponse;
 import hospitaljpa.mustache.domain.dto.VisitCreateRequest;
 import hospitaljpa.mustache.domain.dto.VisitCreateResponse;
 import hospitaljpa.mustache.domain.dto.VisitFindAllResponse;
@@ -45,5 +46,10 @@ public class VisitService {
         List<Visit> visitList = visitJpaRepository.findAll();
         int count = visitList.size();
         return new VisitFindAllResponse(visitList, count);
+    }
+
+    public FindByUserVisitResponse findByVisitsUser(Long userId) {
+        List<Visit> findByVisitsUser = visitJpaRepository.findByUsersId(userId);
+        return new FindByUserVisitResponse(findByVisitsUser, findByVisitsUser.size());
     }
 }

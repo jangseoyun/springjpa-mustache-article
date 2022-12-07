@@ -1,5 +1,6 @@
 package hospitaljpa.mustache.controller;
 
+import hospitaljpa.mustache.domain.dto.FindByUserVisitResponse;
 import hospitaljpa.mustache.domain.dto.VisitCreateRequest;
 import hospitaljpa.mustache.domain.dto.VisitCreateResponse;
 import hospitaljpa.mustache.domain.dto.VisitFindAllResponse;
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("api/v1/visits")
-public class VisitController {
+public class VisitRestController {
     private final VisitService visitService;
 
     /**
@@ -45,5 +46,16 @@ public class VisitController {
     }
 
 
+    /**
+     * 특정 유저 방문 기록 조회
+     * @param userId
+     * @return 작성한 리스트, 카운트 반환
+     */
+    @GetMapping("/user/{user-id}")
+    public ResponseEntity<FindByUserVisitResponse> findUserOne(@PathVariable("user-id") Long userId) {
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(visitService.findByVisitsUser(userId));
+    }
 
 }
