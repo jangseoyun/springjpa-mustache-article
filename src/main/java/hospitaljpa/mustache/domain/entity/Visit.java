@@ -2,10 +2,13 @@ package hospitaljpa.mustache.domain.entity;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
+@Getter
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -30,5 +33,8 @@ public class Visit {
 
     @Column(name = "amount")
     private float amount;
+
+    @Column(name = "create_date")
+    private LocalDateTime createDate;
 
 }
