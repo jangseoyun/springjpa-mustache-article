@@ -29,6 +29,6 @@ public class Visit {
     private String disease;
 
     @Column(name = "amount")
-    private int amount;
+    private float amount;
 
 }
