@@ -1,12 +1,11 @@
 package hospitaljpa.mustache.domain.entity;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import hospitaljpa.mustache.domain.UserRole;
+import lombok.*;
 
 import javax.persistence.*;
 
+@Builder
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -24,6 +23,12 @@ public class Users {
 
     @Column(name = "password")
     private String password;
+
+    @Column(name = "email_address")
+    private String emailAddress;
+
+    @Enumerated(EnumType.STRING)
+    private UserRole role;
 
     public Users(String username, String password) {
         this.username = username;
