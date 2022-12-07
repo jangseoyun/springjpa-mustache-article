@@ -1,0 +1,40 @@
+package hospitaljpa.mustache.service;
+
+import hospitaljpa.mustache.domain.dto.VisitCreateRequest;
+import hospitaljpa.mustache.domain.dto.VisitCreateResponse;
+import hospitaljpa.mustache.domain.entity.Hospital;
+import hospitaljpa.mustache.domain.entity.Users;
+import hospitaljpa.mustache.domain.entity.Visit;
+import hospitaljpa.mustache.domain.factory.VisitCreateFactory;
+import hospitaljpa.mustache.domain.repository.HospitalJpaRepository;
+import hospitaljpa.mustache.domain.repository.UserJpaRepository;
+import hospitaljpa.mustache.domain.repository.VisitJpaRepository;
+import hospitaljpa.mustache.exception.ErrorCode;
+import hospitaljpa.mustache.exception.HospitalReviewException;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+
+@Slf4j
+@Service
+@RequiredArgsConstructor
+public class VisitService {
+
+    private final VisitJpaRepository visitJpaRepository;
+    private final HospitalJpaRepository hospitalJpaRepository;
+    private final UserJpaRepository userJpaRepository;
+
+    public VisitCreateResponse create(VisitCreateRequest visitCreateRequest, String username) {
+        Hospital getHospital = hospitalJpaRepository
+                .findById(visitCreateRequest.getHospitalId())
+                .orElseThrow(() -> new HospitalReviewException(ErrorCode.NOT_FOUND, "해당 병원이 없습니다"));
+
+        Users getUser = userJpaRepository
+                .findByUsername(username)
+                .orElseThrow(() -> new HospitalReviewException(ErrorCode.NOT_FOUND, "해당 유저가 존재하지 않습니다"));
+
+        Visit visit = VisitCreateFactory.toVisitEntity(getHospital, getUser, visitCreateRequest);
+        Visit saveVisitBook = visitJpaRepository.save(visit);
+        return VisitCreateFactory.toVisitResponse(saveVisitBook);
+    }
+}
