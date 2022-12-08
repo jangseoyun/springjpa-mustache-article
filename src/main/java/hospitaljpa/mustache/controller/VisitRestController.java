@@ -1,9 +1,6 @@
 package hospitaljpa.mustache.controller;
 
-import hospitaljpa.mustache.domain.dto.FindByUserVisitResponse;
-import hospitaljpa.mustache.domain.dto.VisitCreateRequest;
-import hospitaljpa.mustache.domain.dto.VisitCreateResponse;
-import hospitaljpa.mustache.domain.dto.VisitFindAllResponse;
+import hospitaljpa.mustache.domain.dto.*;
 import hospitaljpa.mustache.service.VisitService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -52,10 +49,22 @@ public class VisitRestController {
      * @return 작성한 리스트, 카운트 반환
      */
     @GetMapping("/user/{user-id}")
-    public ResponseEntity<FindByUserVisitResponse> findUserOne(@PathVariable("user-id") Long userId) {
+    public ResponseEntity<FindByUserVisitResponse> findUserVisits(@PathVariable("user-id") Long userId) {
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(visitService.findByVisitsUser(userId));
+    }
+
+    /**
+     * 특정 병원 방문 기록 조회
+     * @param hospitalId
+     * @return 해당 병원 방문 기록 리스트, 카운트 반환
+     */
+    @GetMapping("/hospital/{hospital-id}")
+    public ResponseEntity<FindByHospitalVisitResponse> findHospitalVisits(@PathVariable("hospital-id") Long hospitalId) {
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(visitService.findBuHospitalVisits(hospitalId));
     }
 
 }
