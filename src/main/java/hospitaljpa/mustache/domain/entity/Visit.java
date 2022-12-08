@@ -1,20 +1,18 @@
 package hospitaljpa.mustache.domain.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 @Getter
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
 @Table(name = "t_visit")
-public class Visit {
+public class Visit extends BaseEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,13 +35,11 @@ public class Visit {
     @Column(name = "amount")
     private float amount;
 
-    @Column(name = "create_date")
-    private LocalDateTime createDate;
-
     public Visit(Hospital hospital, Users users, String disease, float amount) {
         this.hospital = hospital;
         this.users = users;
         this.disease = disease;
         this.amount = amount;
     }
+
 }
