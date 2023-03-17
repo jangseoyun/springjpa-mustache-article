@@ -16,7 +16,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 @RequiredArgsConstructor
 public class SecurityConfig {
-
     private final UserService userService;
     @Value("${jwt.token.secret}")
     private String secretKey;
@@ -28,7 +27,7 @@ public class SecurityConfig {
                 .csrf().disable()
                 .cors().and()
                 .authorizeRequests()
-                .antMatchers("/api/v1/users/join", "/api/v1/users/login").permitAll() // join, login은 언제나 가능
+                .antMatchers("/api/v1/users/join", "/api/v1/users/login", "/hospital/api", "/swagger-ui/").permitAll() // join, login은 언제나 가능
                 .antMatchers(HttpMethod.POST, "/api/v1/**").authenticated()//문 만들기(인증된 사용자의 접근 허용)
                 .and()
                 .sessionManagement()
@@ -38,5 +37,4 @@ public class SecurityConfig {
                 //로그인을 한 다음에 받은 토큰
                 .build();
     }
-
 }

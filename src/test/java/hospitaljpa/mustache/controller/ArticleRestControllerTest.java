@@ -24,7 +24,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(ArticleRestController.class)
 @DisplayName("ArticleRestControllerTest")
 class ArticleRestControllerTest {
-
     @Autowired
     MockMvc mockMvc;
     @Autowired
@@ -32,7 +31,6 @@ class ArticleRestControllerTest {
 
     @MockBean
     ArticleService articleService;
-
 
     @DisplayName("한개의 게시물을 잘 가지고 오는지")
     @Test

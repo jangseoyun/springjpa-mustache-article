@@ -60,7 +60,12 @@ public class UserService {
 
     public Users getUserByUserName(String userName) {
         return userJpaRepository.findByUsername(userName)
-                .orElseThrow(() -> new HospitalReviewException(ErrorCode.NOT_FOUND, ""));
+                .orElseThrow(() -> new HospitalReviewException(ErrorCode.NOT_FOUND, ErrorCode.NOT_FOUND.getMessage()));
+    }
+
+    public Users findUser(Long id) {
+        return userJpaRepository.findById(id)
+                .orElseThrow(() -> new HospitalReviewException(ErrorCode.NOT_FOUND, ErrorCode.NOT_FOUND.getMessage()));
     }
 
 }

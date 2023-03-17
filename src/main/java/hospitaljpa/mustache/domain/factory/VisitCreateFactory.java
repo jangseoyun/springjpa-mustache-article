@@ -7,7 +7,6 @@ import hospitaljpa.mustache.domain.entity.Users;
 import hospitaljpa.mustache.domain.entity.Visit;
 
 public class VisitCreateFactory {
-
     public static Visit toVisitEntity(Hospital setHospital, Users setUser, VisitCreateRequest visitCreateRequest) {
         return new Visit(
                   setHospital
@@ -24,5 +23,4 @@ public class VisitCreateFactory {
                 , getVisit.getDisease()
                 , getVisit.getAmount());
     }
-
 }

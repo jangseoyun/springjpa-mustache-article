@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Table(name = "nation_wide_hospitals")
+@Table(name = "t_hospital_data")
 public class Hospital {
 
     @Id

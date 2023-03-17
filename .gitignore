@@ -43,4 +43,6 @@ out/
 
 ### properties ###
 application.properties
+application-local.yml
+application-dev.yml
 

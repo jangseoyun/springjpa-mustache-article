@@ -11,9 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Getter
 @Builder
-
 public class UserJoinRequest {
-
     private String username;
     private String password;
     private String emailAddress;
@@ -26,6 +24,4 @@ public class UserJoinRequest {
                 .role(UserRole.USER)
                 .build();
     }
-
-
 }
