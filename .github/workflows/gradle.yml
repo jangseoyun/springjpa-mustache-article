@@ -43,11 +43,11 @@ jobs:
       # with:
         # arguments: build
       run : ./gradlew clean build --exclude-task test
-
+      
     # 전송할 파일을 담을 디렉토리 생성
     - name: Make Directory for deliver
       run: mkdir deploy
-
+     
     # Jar 파일 Copy
     - name: Copy Jar
       run: cp ./build/libs/*.jar ./deploy/
@@ -64,5 +64,4 @@ jobs:
       run: |
         aws s3 cp \
         --region ap-northeast-2 \
-        --acl private \ 
-        ./springboot-intro-build.zip s3://springboot-intro-build/
+        --acl private \ ./springboot-intro-build.zip s3://springboot-intro-build/
