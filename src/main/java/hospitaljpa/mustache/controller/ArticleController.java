@@ -3,16 +3,19 @@ package hospitaljpa.mustache.controller;
 
 import hospitaljpa.mustache.domain.dto.ArticleDto;
 import hospitaljpa.mustache.domain.dto.CommentDto;
-import hospitaljpa.mustache.domain.factory.CommentFactory;
 import hospitaljpa.mustache.domain.entity.Article;
 import hospitaljpa.mustache.domain.entity.ArticleComment;
+import hospitaljpa.mustache.domain.factory.CommentFactory;
 import hospitaljpa.mustache.domain.repository.ArticleJpaRepository;
 import hospitaljpa.mustache.domain.repository.CommentJpaRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 import java.util.Optional;
