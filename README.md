@@ -100,10 +100,10 @@ ManyToOne, OneToOne 관계는 `기본값`이 즉시 로딩으로 설정되어 �
 - 아이디 및 비밀번호 일치 여부는 `보안`을 위해 "id or pw" 메세지 반환
 
 | Http Status Code | Error Message | Description |
-|------------------|---------------|-------------|
-|      409            |     DUPLICATED_USER_NAME          |     User name is duplicated        |
-|       404              |       NOT_FOUND        |        not found id or pw     |
-|        400             |       INVALID_PASSWORD        |    not found id or pw         |
+|:----------------:|:-------------:|:-----------:|
+|         409         |       DUPLICATED_USER_NAME        |      User name is duplicated       |
+|          404           |       NOT_FOUND        |      not found id or pw       |
+|          400           |       INVALID_PASSWORD        |      not found id or pw       |
 
 ## 5-6) springSecurity / JWT 적용
 - springSecurity를 통해 특정 리소스(URL)에 권한을 가진 사용자만 접근이 가능하도록 권한을 설정<br>
